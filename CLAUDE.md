@@ -5,8 +5,8 @@
 
 ## 폴더
 
-- `texts/inbox/` — 처리할 원문. 파일 하나가 글 하나 (`.md` 또는 `.txt`).
-- `texts/out/` — 결과. 원문 `foo.md`마다 아래 두 파일을 만든다.
+- `sepia/inbox/` — 처리할 원문. 파일 하나가 글 하나 (`.md` 또는 `.txt`).
+- `sepia/out/` — 결과. 원문 `foo.md`마다 아래 두 파일을 만든다.
   - `foo.review.md` — sepia review 보고서 (`SEPIA REVIEW` 형식 그대로)
   - `foo.md` — 수정본 (refactor 또는 recreate 결과)
 
@@ -14,11 +14,11 @@
 
 "inbox 처리해줘" 같은 요청을 받으면:
 
-1. `texts/inbox/`에서 `texts/out/`에 `.review.md`가 아직 없는 파일만 고른다. 이미 처리된 파일은 건너뛴다.
+1. `sepia/inbox/`에서 `sepia/out/`에 `.review.md`가 아직 없는 파일만 고른다. 이미 처리된 파일은 건너뛴다.
 2. 파일마다 sepia 스킬(`.claude/skills/sepia/SKILL.md`)을 처음부터 읽고 라우팅을 따른다. 글 종류는 내용을 보고 판단하되, 판단이 애매하면 보고서의 첫 줄에 고른 근거를 적는다.
 3. 기본 작업은 refactor다 (보고서 → 수정). review 보고서의 Verdict가 `recreate`이면 recreate로 다시 쓴다. 사용자가 다른 작업(review만, recreate 등)을 지정하면 그것을 따른다.
 4. 무인 모드로 동작한다: 중간에 묻지 않고, 사람이 결정해야 하는 항목은 보고서의 `Deferred:` 줄에 남긴다. 원문에 없는 수치·이름·날짜는 지어내지 말고 `TODO`로 남긴다.
-5. 원문 파일(`texts/inbox/`)은 수정하지 않는다.
+5. 원문 파일(`sepia/inbox/`)은 수정하지 않는다.
 6. 모두 끝나면 처리한 파일 목록과 각 Verdict를 한 줄씩 요약하고, 결과를 커밋·푸시한다.
 
 ## 참고
